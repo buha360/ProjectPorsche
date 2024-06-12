@@ -13,11 +13,6 @@ public class CarController {
     @Autowired
     private CarService carService;
 
-    @GetMapping
-    public List<Car> getAllCars() {
-        return carService.getAllCars();
-    }
-
     @GetMapping("/{id}")
     public Car getCarById(@PathVariable String id) {
         return carService.getCarById(id);
@@ -31,5 +26,15 @@ public class CarController {
     @DeleteMapping("/{id}")
     public void deleteCar(@PathVariable String id) {
         carService.deleteCar(id);
+    }
+
+    @PutMapping("/{id}")
+    public Car updateCar(@PathVariable String id, @RequestBody Car car) {
+        return carService.updateCar(id, car);
+    }
+
+    @GetMapping
+    public List<Car> getAllCars(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        return carService.getAllCars(page, size);
     }
 }

@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1>ProjectPorsche</h1>
+</mat-toolbar>
+
+<mat-sidenav-container autosize>
+  <mat-sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isCollapsed">
+    <mat-nav-list>
+      <a mat-list-item>
+        <span class="entry">
+          <mat-icon>home</mat-icon>
+          <span *ngIf="!isCollapsed">Dashboard</span>
+        </span>
+      </a>
+      <a mat-list-item routerLink="/register">
+        <span class="entry">
+          <mat-icon>person</mat-icon>
+          <span *ngIf="!isCollapsed">Register</span>
+        </span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
