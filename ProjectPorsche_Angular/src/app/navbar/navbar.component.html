@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav mode="over" [(opened)]="menuOpen" class="sidenav">
+    <div class="sidenav-header">
+      <button mat-icon-button (click)="toggleMenu()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <mat-nav-list>
+      <ng-container *ngFor="let item of menuItems">
+        <a mat-list-item (click)="toggleSubMenu(item)">
+          <span>{{ item.title }}</span>
+          <span class="material-symbols-outlined">chevron_right</span>
+        </a>
+        <div *ngIf="item.expanded" class="sub-menu">
+          <a mat-list-item *ngFor="let subItem of item.subItems">{{ subItem }}</a>
+        </div>
+      </ng-container>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,99 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+mat-toolbar {
+  position: fixed;
+  background-color: #212327;
+  color: white;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+}
+
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 35%;
+  background-color: #fff;
+  color: black;
+  box-shadow: 3px 0 6px rgba(0,0,0,0.16), -3px 0 6px rgba(0,0,0,0.23);
+  z-index: 3;
+}
+
+.sidenav {
+  .mat-list-item {
+    cursor: pointer;
+    padding: 16px 24px; /* Növelt padding a kényelmesebb megjelenéshez */
+    margin-bottom: 8px; /* Vertikális helykihagyás */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Szöveg balra, ikon jobbra */
+    height: 56px; /* Növelt magasság */
+    &:hover {
+      background-color: #f1f1f1;
+    }
+
+    span {
+      flex-grow: 1;
+      display: flex;
+      align-items: center; /* Szöveg középre igazítása vertikálisan */
+    }
+
+    .material-symbols-outlined {
+      font-size: 24px; /* Az ikon mérete */
+      margin-left: auto;
+      display: flex;
+      align-items: center; /* Az ikon vertikális igazítása */
+    }
+
+    .mat-icon {
+      margin-left: 8px;
+      font-size: 24px;
+      height: 24px;
+      width: 24px;
+      line-height: 24px;
+      display: flex;
+      align-items: center; /* Biztosítja, hogy az ikon középen legyen */
+    }
+  }
+  .sub-menu {
+    padding-left: 36px;
+    background-color: #f9f9f9;
+    a {
+      padding-left: 16px;
+      margin-bottom: 8px;
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+  }
+}
+
+.sidenav-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px;
+}
+
+mat-sidenav-content {
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.content {
+  padding-top: 3.5rem;
+  padding: 16px;
+  color: black;
+  @media screen and (min-width: 600px) {
+    padding-top: 4rem;
+  }
+}

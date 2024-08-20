@@ -1,18 +1,27 @@
 package com.wardanger.ProjectPorsche.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+
+import jakarta.persistence.*;
+import java.util.List;
 
 @Getter
-@Document(collection = "users")
+@Entity
+@Table(name = "users")
 public class User {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String email;
     private String password;
 
-    public void setId(String id) {
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Car> cars;
+
+    public void setId(Long id) {
         this.id = id;
     }
 
