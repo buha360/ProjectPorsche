@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/service-records")
+@RequestMapping("/service-records")
 public class ServiceRecordController {
 
     @Autowired

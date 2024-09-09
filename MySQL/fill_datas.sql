@@ -1,11 +1,11 @@
 -- Users adatok
-INSERT INTO users (name, phone_number, address, email)
+INSERT INTO users (name, phone_number, address, email, password)
 VALUES 
-('John Doe', '123-456-7890', '123 Main St, Springfield', 'johndoe@example.com'),
-('Jane Smith', '987-654-3210', '456 Elm St, Springfield', 'janesmith@example.com'),
-('Michael Johnson', '555-123-4567', '789 Oak St, Springfield', 'mjohnson@example.com'),
-('Emily Davis', '444-555-6666', '101 Pine St, Springfield', 'edavis@example.com'),
-('William Brown', '333-444-5555', '202 Maple St, Springfield', 'wbrown@example.com');
+('John Doe', '123-456-7890', '123 Main St, Springfield', 'johndoe@example.com', 'asd'),
+('Jane Smith', '987-654-3210', '456 Elm St, Springfield', 'janesmith@example.com', 'asd'),
+('Michael Johnson', '555-123-4567', '789 Oak St, Springfield', 'mjohnson@example.com', 'asd'),
+('Emily Davis', '444-555-6666', '101 Pine St, Springfield', 'edavis@example.com', 'asd'),
+('William Brown', '333-444-5555', '202 Maple St, Springfield', 'wbrown@example.com', 'asd');
 
 -- Cars adatok
 INSERT INTO cars (model, year, date_added, user_id)

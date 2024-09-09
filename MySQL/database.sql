@@ -6,9 +6,10 @@ USE projectporsche;
 CREATE TABLE users (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(20),
-    address VARCHAR(255),
-    email VARCHAR(255) NOT NULL
+    phone_number VARCHAR(20) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
 );
 
 -- Cars tábla létrehozása

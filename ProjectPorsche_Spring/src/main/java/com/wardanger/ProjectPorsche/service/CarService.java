@@ -42,7 +42,6 @@ public class CarService {
             existingCar.setModel(car.getModel());
             existingCar.setYear(car.getYear());
 
-            // Felhasználó frissítése
             if (car.getUser() != null && car.getUser().getId() != null) {
                 userRepository.findById(car.getUser().getId()).ifPresent(existingCar::setUser);
             }

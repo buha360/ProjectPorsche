@@ -17,7 +17,7 @@ public class ServiceRecord {
 
     @ManyToOne
     @JoinColumn(name = "car_id")
-    @JsonBackReference // Ez megakadályozza a végtelen ciklust
+    @JsonBackReference
     private Car car;
 
     private BigDecimal price;
