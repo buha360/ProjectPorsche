@@ -7,24 +7,29 @@ import com.wardanger.ProjectPorsche.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
 @Service
 public class CarService {
-    @Autowired
-    private CarRepository carRepository;
+
+    private final CarRepository carRepository;
+
+    private final UserRepository userRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    public CarService (CarRepository carRepository, UserRepository userRepository) {
+        this.carRepository = carRepository;
+        this.userRepository = userRepository;
+    }
 
     public List<Car> getAllCars() {
         return carRepository.findAll();
-    }
-
-    public Car getCarById(Long id) {
-        return carRepository.findById(id).orElse(null);
     }
 
     public Car saveCar(Car car) {
@@ -54,5 +59,33 @@ public class CarService {
     public List<Car> getAllCars(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return carRepository.findAll(pageable).getContent();
+    }
+
+    public List<Car> getAllCarsForUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        return carRepository.findByUserId(user.getId());
+    }
+
+    public Car getCarById(Long carId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser = (User) authentication.getPrincipal();
+
+        Car car = carRepository.findById(carId).orElseThrow(() -> new RuntimeException("Car not found"));
+
+        if (!car.getUser().getId().equals(currentUser.getId())) {
+            throw new RuntimeException("Unauthorized access to this car");
+        }
+        return car;
+    }
+
+    public Car checkCarOwnership(Long carId, User currentUser) {
+        Car car = carRepository.findById(carId).orElseThrow(() -> new RuntimeException("Car not found"));
+
+        if (!car.getUser().getId().equals(currentUser.getId())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You are not authorized to access this car");
+        }
+
+        return car;
     }
 }
