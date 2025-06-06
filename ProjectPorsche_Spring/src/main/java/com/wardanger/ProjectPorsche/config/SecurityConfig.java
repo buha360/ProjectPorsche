@@ -1,4 +1,4 @@
-package com.wardanger.ProjectPorsche;
+package com.wardanger.ProjectPorsche.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

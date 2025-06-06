@@ -1,29 +1,27 @@
 package com.wardanger.ProjectPorsche.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
 import jakarta.persistence.*;
-import java.util.List;
+import lombok.*;
 
-@Data
 @Entity
-@Table(name = "cars")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Car {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String make;
+    private String plateNumber;
+    private String brand;
     private String model;
-    private int year;
+    private Integer year;
+    private String fuelType;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "customer_id")
     @JsonBackReference
-    private User user;
-
-    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private List<ServiceRecord> serviceRecords;
+    private Customer customer;
 }
